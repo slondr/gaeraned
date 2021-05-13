@@ -30,3 +30,11 @@ The server accepts a string containing JSON data representing the current state 
 | bullets shot | int      |
 
 The server stores this data in the Redis cache.
+
+## Building and running
+
+First, install and set up Erlang. A reasonably modern version of Erlang is required.
+
+Then, just run `make run` in the main server directory. Everything should just work! You'll be dropped in an Erlang shell, but the server and all routes will be set up automatically. You should see some debug output as the server receives connections. All regular Erlang debug and introspection functions are available in the shell, as well.
+
+The build system is set up to produce a binary release on every build, too, so if you're so inclined you can grab the tarballs and throw it on a fancy VPS to deploy the game for real. The release binaries *should* be self-contained (meaning you don't need to install Erlang first to run them), but I haven't felt the need to verify that so YMMV.
