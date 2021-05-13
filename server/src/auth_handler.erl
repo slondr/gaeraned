@@ -4,8 +4,5 @@
 -export([init/2]).
 
 init(Req, State) ->
-    Req = cowboy_req:reply(200,
-			  #{<<"content-type">> => <<"text/plain; charset=utf-8">>},
-			   <<"Authentication">>,
-			   Req),
-    {ok, Req, State}.
+    % TODO: Node IPC
+    {cowboy_websocket, Req, State}.
