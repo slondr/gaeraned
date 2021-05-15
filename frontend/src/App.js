@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { AuthProvider } from './firebase/Auth';
+// import Signup from "./Pages/Login/Signup";
+import Login from "./components/Login";
+import Private from "./components/Private";
+import Placeholder from "./components/Placeholder";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <p> probably include some nice header/css here </p>
+        <Switch>
+          <Private exact path="/" component={Placeholder} />
+          <Route exact path="/login" component={Login} /> 
+        </Switch>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
