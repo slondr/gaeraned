@@ -1,25 +1,22 @@
-
 import { BrowserRouter as Redirect } from "react-router-dom";
+import React, {useContext} from "react";
 
-
-import React, {useState} from "react";
-
+import { AuthContext } from '../firebase/Auth';
 import firebaseApp from "../firebase/firebaseApp";
 
 const SignUp = () => {
-  const [currentUser, setCurrentUser] = useState(null);    
+  const { currentUser } = useContext(AuthContext);    
   const handleSubmit = (e) => {
     e.preventDefault();    
     const { email, password } = e.target.elements;
     try {
       firebaseApp.auth().createUserWithEmailAndPassword(email.value, password.value);      
-      setCurrentUser(true);
     } catch (error) {
       alert(error);
     }
   };
   if (currentUser) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to="/" />;
   }
   return (
     <>
