@@ -1,6 +1,6 @@
-# gaeraned Gateway Server
+# gaeraned Server
 
-This server acts as the gateway for the multi-part gaeraned backend. It is
+This server acts as the backend for the video game gaeraned. It is
 written in Erlang, and capable of handling tens of thousands of concurrent
 connections while maintaining reasonable throughput and low latency.
 
@@ -40,28 +40,27 @@ the need to verify that so YMMV.
 
 There are two routes useful for the gaeraned front-end:
 
-### `/`
+### `/:token`
 
 This is an HTTP route. 
 
-The server accepts some basic authenticating information, and passes that
-information to the Node server for verification through Firebase. When it
-receives information about the user back from Node, it returns that to the
-requesting client.
+`token` represents the logged-in user. This route will return the most up-
+to-date stats logged for that user in the redis cache.
 
-### `/data`
+### `/`
 
 This is a WebSocket route.
 
 The server accepts a string containing JSON data representing the current state
 of the client's game state:
 
-| datum        | type       |
-|--------------|------------|
-| score        | `int`      |
-| playtime     | `HH:MM:SS` |
-| jumps        | `int`      |
-| bullets shot | `int`      |
+| datum        | type         |
+|--------------|--------------|
+| token        | `auth_token` |
+| score        | `int`        |
+| playtime     | `HH:MM:SS`   |
+| jumps        | `int`        |
+| bullets shot | `int`        |
 
 The server stores this data in the Redis cache.
 
