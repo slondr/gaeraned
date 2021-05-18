@@ -9,6 +9,9 @@ init(Req, State) ->
 websocket_handle(Frame = {text, _}, State) ->
     {text, Data} = Frame,
     io:fwrite("~s~n", [Data]), 			% Print the received message, for debug purposes
+    StatMap = json:from_binary(Data),
+    Token = find(<<"token">>, StatMap),
+    whereis(cache)!{set, self(), Token, Data},
     {[{text, <<"ok">>}], State};		% Respond with "ok"
 websocket_handle(_Frame, State) ->
     {ok, State}.
