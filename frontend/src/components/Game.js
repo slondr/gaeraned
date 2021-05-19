@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../firebase/Auth';
 import { signOut } from "../firebase/authFunctions";
 
-const Placeholder = (props) => {
+const Game = (props) => {
     const { currentUser } = useContext(AuthContext);
     console.log(currentUser);
 
@@ -43,4 +43,4 @@ const Placeholder = (props) => {
     );
 };
 
-export default Placeholder;
+export default Game;
