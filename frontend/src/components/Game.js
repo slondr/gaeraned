@@ -1,25 +1,57 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../firebase/Auth';
 import { signOut } from "../firebase/authFunctions";
+import axios from 'axios';
 
 const Game = (props) => {
     const { currentUser } = useContext(AuthContext);
-    console.log(currentUser);
+    const [ playerStats, setPlayerStats ] = useState({
+                    token: currentUser.uid,
+                    score: 0,
+                    numJumps: 0,
+                    numShots: 0,
+                    hPlayed: 0,
+                    mPlayed: 0,
+                    sPlayed: 0
+                });
 
     useEffect(() => {
-        const unityscripts = document.createElement('script');
+        async function fetchData() {
+            try {
+                console.log("sending request");
+                const { data: stats } = await axios.get('http://localhost:8080/' + currentUser.uid);
+                setPlayerStats(stats);
+                console.log(stats);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        fetchData();
+        // const data = document.createElement('script');
+        // data.id = "gamedata";
+        // document.body.appendChild(data);
 
+        const unityscripts = document.createElement('script');
         unityscripts.src = process.env.PUBLIC_URL + '/buildscripts.js';
         document.body.appendChild(unityscripts);
-    }, []);
+    }, [ currentUser ]);
+
+    useEffect(() => {
+      // document.getElementById("gamedata").innerHTML = "var gamedata = " + JSON.stringify(playerStats) + ";";
+      window.gameDataFunc = function() {return JSON.stringify(playerStats)};
+      console.log(window.gameDataFunc);
+      console.log(window.gameDataFunc());
+    }, [ playerStats ]);
 
     function signOutAction() {
         signOut();
         window.location.reload();
     };
 
+
     return(
         <div>
+            <script></script>
             <button className="login" onClick={signOutAction}>Sign Out</button>
             <br/>
             <div id="unity-container" className="unity-desktop">

@@ -12,18 +12,19 @@ const Dashboard = (props) => {
         async function fetchData() {
             try {
                 console.log("sending request");
-                // REPLACE WITH ERLANG GATEWAY SERVER HTTP URL
-                const { data: stats } = await axios.get('http://localhost:8543/' + currentUser.uid);
+                const { data: stats } = await axios.get('http://localhost:8080/' + currentUser.uid);
                 setPlayerStats(stats);
                 setLoading(false);
                 console.log(stats);
             } catch (e) {
                 let placeholder = {
-                    token: "59843753",
-                    score: 20,
-                    playtime: "12:34:56",
-                    jumps: 120,
-                    bullets: 300
+                    token: currentUser.uid,
+                    score: 50,
+                    numJumps: 100,
+                    numShots: 100,
+                    hPlayed: 100,
+                    mPlayed: 100,
+                    sPlayed: 100
                 }
                 setPlayerStats(placeholder);
                 setLoading(false);
@@ -41,9 +42,8 @@ const Dashboard = (props) => {
             <div>
                 <h1>Stats</h1>
                 <h2> Score: {playerStats.score} </h2>
-                <h2> Play Time: {playerStats.playtime} </h2>
-                <h2> Jumps: {playerStats.jumps} </h2>
-                <h2> Bullets Shot: {playerStats.bullets} </h2>
+                <h2> Jumps: {playerStats.numJumps} </h2>
+                <h2> Bullets Shot: {playerStats.numShots} </h2>
             </div>
         );
     }
