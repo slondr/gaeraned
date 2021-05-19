@@ -1,9 +1,9 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/Build_v0.3.loader.js";
+var loaderUrl = buildUrl + "/Build_v0.4.loader.js";
 var config = {
-  dataUrl: buildUrl + "/Build_v0.3.data",
-  frameworkUrl: buildUrl + "/Build_v0.3.framework.js",
-  codeUrl: buildUrl + "/Build_v0.3.wasm",
+  dataUrl: buildUrl + "/Build_v0.4.data",
+  frameworkUrl: buildUrl + "/Build_v0.4.framework.js",
+  codeUrl: buildUrl + "/Build_v0.4.wasm",
   streamingAssetsUrl: "StreamingAssets",
   companyName: "gaeraned",
   productName: "FunGame",
