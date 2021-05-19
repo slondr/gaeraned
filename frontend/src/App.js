@@ -6,7 +6,8 @@ import { AuthProvider } from './firebase/Auth';
 import Login from "./components/Login";
 import Signup from "./components/Signup"
 import Private from "./components/Private";
-import Placeholder from "./components/Placeholder";
+import Game from "./components/Game";
+import Dashboard from "./components/Dashboard";
 
 
 function App() {
@@ -15,9 +16,11 @@ function App() {
       <BrowserRouter>
         <h1>gaeraned studios</h1>
         <Switch>
-          <Private exact path="/" component={Placeholder} />
+          <Private exact path="/" component={Game} />
+          <Private exact path="/dashboard" component={Dashboard} />
           <Route exact path="/login" component={Login} /> 
           <Route exact path="/signup" component={Signup} /> 
+          <Route> <h1>404 Not Found</h1> </Route>
         </Switch>
       </BrowserRouter>
     </AuthProvider>
