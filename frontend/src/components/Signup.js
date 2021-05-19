@@ -20,12 +20,14 @@ const SignUp = () => {
   }
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="login" onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
         <label for="email">Email</label>
         <input type="email" name="email" placeholder="Email" />
+        <br></br>
         <label for="password">Password</label>
         <input type="password" name="password" placeholder="Password" />
+        <br></br>
         <button type="submit">Submit</button>
       </form>
     </>
