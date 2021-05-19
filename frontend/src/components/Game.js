@@ -23,13 +23,21 @@ const Game = (props) => {
                 setPlayerStats(stats);
                 console.log(stats);
             } catch (e) {
+                console.log("failed but changing for test purposes");
+                setPlayerStats({
+                    token: currentUser.uid,
+                    score: 500,
+                    numJumps: 0,
+                    numShots: 0,
+                    hPlayed: 0,
+                    mPlayed: 0,
+                    sPlayed: 0
+                  }
+                )
                 console.log(e);
             }
         }
         fetchData();
-        // const data = document.createElement('script');
-        // data.id = "gamedata";
-        // document.body.appendChild(data);
 
         const unityscripts = document.createElement('script');
         unityscripts.src = process.env.PUBLIC_URL + '/buildscripts.js';
@@ -37,17 +45,14 @@ const Game = (props) => {
     }, [ currentUser ]);
 
     useEffect(() => {
-      // document.getElementById("gamedata").innerHTML = "var gamedata = " + JSON.stringify(playerStats) + ";";
-      window.gameDataFunc = function() {return JSON.stringify(playerStats)};
-      console.log(window.gameDataFunc);
-      console.log(window.gameDataFunc());
+      window.gameData = JSON.stringify(playerStats);
+      console.log(window.gameData);
     }, [ playerStats ]);
 
     function signOutAction() {
         signOut();
         window.location.reload();
     };
-
 
     return(
         <div>
