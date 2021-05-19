@@ -3,7 +3,7 @@ import { AuthContext } from '../firebase/Auth';
 import { signOut } from "../firebase/authFunctions";
 
 const Placeholder = (props) => {
-    const { currentUser } = useContext(AuthContext)
+    const { currentUser } = useContext(AuthContext);
     console.log(currentUser);
 
     useEffect(() => {
@@ -13,9 +13,14 @@ const Placeholder = (props) => {
         document.body.appendChild(unityscripts);
     }, []);
 
+    function signOutAction() {
+        signOut();
+        window.location.reload();
+    };
+
     return(
         <div>
-            <button className="login" onClick={signOut}>Sign Out</button>
+            <button className="login" onClick={signOutAction}>Sign Out</button>
             <br/>
             <div id="unity-container" className="unity-desktop">
               <canvas id="unity-canvas"></canvas>

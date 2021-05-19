@@ -6,7 +6,8 @@ async function createUserWithEmailAndPassword(email, password, displayName) {
 }
 
 async function signIn(email, password) {
-  await firebase.auth().signInWithEmailAndPassword(email, password);
+    await firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch((e) => alert(e));
 }
 
 async function signOut() {
