@@ -7,7 +7,7 @@ const Game = (props) => {
     const { currentUser } = useContext(AuthContext);
     const [ playerStats, setPlayerStats ] = useState({
                     token: currentUser.uid,
-                    score: 0,
+                    score: 30,
                     numJumps: 0,
                     numShots: 0,
                     hPlayed: 0,
@@ -48,6 +48,18 @@ const Game = (props) => {
       window.gameData = JSON.stringify(playerStats);
       console.log(window.gameData);
     }, [ playerStats ]);
+
+    async function refetchData() {
+      try {
+        const { data: stats } = await axios.get('http://localhost:8080/' + currentUser.uid);
+        setPlayerStats(stats);
+        console.log("refetching data");
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    setInterval(refetchData, 10000);
 
     function signOutAction() {
         signOut();
