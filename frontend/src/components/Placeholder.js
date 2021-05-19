@@ -15,8 +15,8 @@ const Placeholder = (props) => {
 
     return(
         <div>
-            <p>test</p>
-            <button onClick={signOut}>Sign Out</button>
+            <button className="login" onClick={signOut}>Sign Out</button>
+            <br/>
             <div id="unity-container" className="unity-desktop">
               <canvas id="unity-canvas"></canvas>
               <div id="unity-loading-bar">
