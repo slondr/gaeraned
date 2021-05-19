@@ -12,14 +12,15 @@ const Login = (props) => {
         else {
             return(
                 <div>
-                <form>
+                <form className="login">
+                    <h2>Log In</h2>
                     <label>
-                        Email: 
+                        Email: <br/>
                         <input name="email" onChange={e => setEmail(e.target.value)} />
                     </label>
                     <br />
                     <label>
-                        Password: 
+                        Password: <br/>
                         <input type="password" name="password" onChange={e => setPassword(e.target.value)} />
                     </label>
                     <br />

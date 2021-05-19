@@ -13,7 +13,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <p> probably include some nice header/css here </p>
+        <h1>gaeraned studios</h1>
         <Switch>
           <Private exact path="/" component={Placeholder} />
           <Route exact path="/login" component={Login} /> 
