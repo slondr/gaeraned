@@ -1,4 +1,4 @@
 *.beam
 /server/ebin/
-server/.erlang.mk/rebar/
+/server/.erlang.mk/rebar/
 .DS_Store
