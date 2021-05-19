@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { BrowserRouter as Redirect } from "react-router-dom";
 import { signIn } from "../firebase/authFunctions";
 import { AuthContext } from "../firebase/Auth";
 
@@ -19,21 +18,23 @@ const Login = (props) => {
         signIn(email, password);
     };
 
+    function signUpPage() {
+        props.history.push('/signup');
+    };
+
     return(
         <div>
         <form className="login">
             <h2>Log In</h2>
-            <label>
-                Email: <br/>
-                <input name="email" onChange={e => setEmail(e.target.value)} />
-            </label>
+            <label> Email </label>
+                <input type="email" name="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
             <br />
-            <label>
-                Password: <br/>
-                <input type="password" name="password" onChange={e => setPassword(e.target.value)} />
-            </label>
+            <label> Password </label>
+                <input type="password" name="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
             <br />
-            <button type="button" value="Submit" onClick={e => signInAction(e)}>Submit</button>
+            <button type="submit" value="submit" onClick={e => signInAction(e)}>Log In</button>
+            <br />
+            <button type="button" onClick={signUpPage}>Sign Up</button>
         </form>
         </div>);
 };
