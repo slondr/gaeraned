@@ -49,17 +49,17 @@ const Game = (props) => {
       console.log(window.gameData);
     }, [ playerStats ]);
 
-    async function refetchData() {
-      try {
-        const { data: stats } = await axios.get('http://localhost:8080/' + currentUser.uid);
-        setPlayerStats(stats);
-        console.log("refetching data");
-      } catch (e) {
-        console.log(e);
-      }
-    };
+    // async function refetchData() {
+    //   try {
+    //     const { data: stats } = await axios.get('http://localhost:8080/' + currentUser.uid);
+    //     setPlayerStats(stats);
+    //     console.log("refetching data");
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // };
 
-    setInterval(refetchData, 10000);
+    // setInterval(refetchData, 10000);
 
     function signOutAction() {
         signOut();
