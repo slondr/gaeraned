@@ -6,6 +6,7 @@ const Dashboard = (props) => {
     const { currentUser } = useContext(AuthContext);
     const [ playerStats, setPlayerStats ] = useState(null);
     const [ loading, setLoading ] = useState(true);
+    const [ error, setError ] = useState(false);
     console.log(currentUser);
 
     useEffect(() => {
@@ -17,16 +18,7 @@ const Dashboard = (props) => {
                 setLoading(false);
                 console.log(stats);
             } catch (e) {
-                let placeholder = {
-                    token: currentUser.uid,
-                    score: 50,
-                    numJumps: 100,
-                    numShots: 100,
-                    hPlayed: 100,
-                    mPlayed: 100,
-                    sPlayed: 100
-                }
-                setPlayerStats(placeholder);
+                setError(true);
                 setLoading(false);
                 console.log(e);
             }
@@ -37,13 +29,16 @@ const Dashboard = (props) => {
 
     if (loading) {
         return(<h2> Loading... </h2>);
-    } else { 
+    } else if (error) { 
+        return(<h2> Sorry, an error occured. </h2>);
+    } else {
         return(
             <div>
                 <h1>Stats</h1>
                 <h2> Score: {playerStats.score} </h2>
                 <h2> Jumps: {playerStats.numJumps} </h2>
                 <h2> Bullets Shot: {playerStats.numShots} </h2>
+                <h2> Playtime: {playerStats.hPlayed}:{playerStats.mPlayed}:{playerStats.sPlayed} </h2>
             </div>
         );
     }
