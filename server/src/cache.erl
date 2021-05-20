@@ -8,8 +8,10 @@ start() ->
 query(C) ->
     receive
 	{get, From, Key} ->
-	    {ok, Ret} = eredis:q(C, ["GET", Key]),
-	    From!{ok, Ret},
+	    case eredis:q(C, ["GET", Key]) of
+			{ok, Ret} -> From!{ok, Ret};
+			_ -> From!{ok, <<"">>}
+			end,
 	    query(C);
 	{set, From, Key, Value} ->
 	    {ok, <<"OK">>} = eredis:q(C, ["SET", Key, Value]),
