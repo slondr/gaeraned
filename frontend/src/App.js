@@ -15,6 +15,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <h1>gaeraned studios</h1>
+        <p>How to play: WASD to move, left to shoot, and space to jump. Once you have killed enough enimes and collected enough coins you must find the key and exit through the door!</p>
         <Switch>
           <Private exact path="/" component={Game} />
           <Private exact path="/dashboard" component={Dashboard} />

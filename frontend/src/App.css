@@ -16,7 +16,6 @@ button{
   background-color: rgb(89, 255, 233);
   border-radius: 15px;
   font-size: 18px;
-  margin: auto;
 }
 
 .login{
@@ -28,4 +27,13 @@ button{
   width: 25%;
   margin: auto;
   border-radius: 30px;
+}
+
+p{
+  text-align: center;
+  font-weight: bold;
+}
+
+.nav{
+  text-align: center;
 }

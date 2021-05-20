@@ -50,9 +50,10 @@ const Game = (props) => {
 
     return(
         <div>
-            <button onClick={dashboardAction}>Dashboard</button>
-            <button className="login" onClick={signOutAction}>Sign Out</button>
-            <br/>
+          <div className="nav">
+          <button onClick={dashboardAction}>Dashboard</button>
+            <button onClick={signOutAction}>Sign Out</button>
+          </div>
             <div id="unity-container" className="unity-desktop">
               <canvas id="unity-canvas"></canvas>
               <div id="unity-loading-bar">
@@ -70,6 +71,8 @@ const Game = (props) => {
                 <div id="unity-build-title">FunGame</div>
               </div>
             </div>
+            <br/>
+            
         </div>
     );
 };
