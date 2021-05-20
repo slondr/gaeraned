@@ -7,6 +7,8 @@ init(Req, State) ->
     io:fwrite("~s~n", [Token]),			% for debug purposes
     whereis(cache)!{get, self(), binary_to_list(Token)}, % Get the stat info from the cache
     receive {ok, Stats} ->
-	    Req = cowboy_req:reply(200, #{<<"content-type">> => <<"application/json">>}, Stats, Req) % Return the info
+        Req1 = cowboy_req:set_resp_header(<<"access-control-allow-methods">>, <<"GET">>, Req),
+        Req2 = cowboy_req:set_resp_header(<<"access-control-allow-origin">>, <<"*">>, Req1),
+	    Req3 = cowboy_req:reply(200, #{<<"content-type">> => <<"application/json">>}, Stats, Req2) % Return the info
     end,
-    {ok, Req, State}.
+    {ok, Req3, State}.
