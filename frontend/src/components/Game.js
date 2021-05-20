@@ -7,7 +7,7 @@ const Game = (props) => {
     const { currentUser } = useContext(AuthContext);
     const [ playerStats, setPlayerStats ] = useState({
                     token: currentUser.uid,
-                    score: 30,
+                    score: 0,
                     numJumps: 0,
                     numShots: 0,
                     hPlayed: 0,
@@ -23,17 +23,6 @@ const Game = (props) => {
                 setPlayerStats(stats);
                 console.log(stats);
             } catch (e) {
-                console.log("failed but changing for test purposes");
-                setPlayerStats({
-                    token: currentUser.uid,
-                    score: 500,
-                    numJumps: 0,
-                    numShots: 0,
-                    hPlayed: 0,
-                    mPlayed: 0,
-                    sPlayed: 0
-                  }
-                )
                 console.log(e);
             }
         }
@@ -49,26 +38,19 @@ const Game = (props) => {
       console.log(window.gameData);
     }, [ playerStats ]);
 
-    // async function refetchData() {
-    //   try {
-    //     const { data: stats } = await axios.get('http://localhost:8080/' + currentUser.uid);
-    //     setPlayerStats(stats);
-    //     console.log("refetching data");
-    //   } catch (e) {
-    //     console.log(e);
-    //   }
-    // };
-
-    // setInterval(refetchData, 10000);
-
     function signOutAction() {
         signOut();
         window.location.reload();
     };
 
+    function dashboardAction() {
+        props.history.push('/dashboard');
+        window.location.reload();
+    };
+
     return(
         <div>
-            <script></script>
+            <button onClick={dashboardAction}>Dashboard</button>
             <button className="login" onClick={signOutAction}>Sign Out</button>
             <br/>
             <div id="unity-container" className="unity-desktop">
