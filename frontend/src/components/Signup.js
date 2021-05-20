@@ -22,6 +22,7 @@ const SignUp = (props) => {
 
   return (
     <>
+    <p>Sign up to play!</p>
       <form className="login" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
         <label htmlFor="email">Email</label>
@@ -34,6 +35,7 @@ const SignUp = (props) => {
         <br />
         <button type="button" onClick={() => props.history.push('/login')}>Log In</button>
       </form>
+      
     </>
   );
 };
